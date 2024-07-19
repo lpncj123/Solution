@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lp.mapper.OrderMapper">
+
+    <select id="selectOrdersToArchiveById" resultType="cn.lp.modal.Order">
+        SELECT OrderId, UserId, Product, Amount, create_time, update_time
+        FROM orders
+        WHERE create_time BETWEEN #{startTime} AND #{endTime}
+          AND OrderId > #{lastOrderId}
+        ORDER BY OrderId
+            LIMIT #{limit}
+    </select>
+
+    <select id="selectMinOrderId" resultType="cn.lp.modal.Order">
+        SELECT OrderId, UserId, Product, Amount, create_time, update_time
+        FROM orders
+        WHERE create_time BETWEEN #{startTime} AND #{endTime}
+           order by OrderId LIMIT 1
+    </select>
+
+    <!-- 批量插入归档数据 -->
+    <insert id="batchInsertOrdersToArchive">
+        INSERT INTO orders1 (OrderId, UserId, Product, Amount, create_time, update_time)
+        VALUES
+        <foreach collection="orders" item="order" separator=",">
+            (#{order.OrderId}, #{order.UserId}, #{order.Product}, #{order.Amount}, #{order.create_time}, #{order.update_time})
+        </foreach>
+    </insert>
+
+    <!-- 批量删除已归档的数据 -->
+    <delete id="batchDeleteArchivedOrders">
+        DELETE FROM orders
+        WHERE OrderId IN
+        <foreach collection="orders" item="order" open="(" separator="," close=")">
+            #{order.OrderId}
+        </foreach>
+    </delete>
+
+</mapper>
