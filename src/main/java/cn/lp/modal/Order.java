@@ -1,4 +1,6 @@
 package cn.lp.modal;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
 /**
@@ -9,14 +11,14 @@ import java.time.LocalDateTime;
  * @Description: TODO
  * @Version: 1.0
  */
-
+@ToString
 public class Order {
     private Integer OrderId;
     private Integer UserId;
     private String Product;
     private String Amount;
-    private LocalDateTime create_time;
-    private LocalDateTime update_time;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 
     // Getter and Setter methods
     public Integer getOrderId() {
@@ -51,20 +53,20 @@ public class Order {
         Amount = amount;
     }
 
-    public LocalDateTime getCreate_time() {
-        return create_time;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setCreate_time(LocalDateTime create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 
-    public LocalDateTime getUpdate_time() {
-        return update_time;
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(LocalDateTime update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }
 
