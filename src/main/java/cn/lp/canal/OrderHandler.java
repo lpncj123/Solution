@@ -4,7 +4,7 @@
 //import org.springframework.stereotype.Component;
 //import top.javatool.canal.client.annotation.CanalTable;
 //import top.javatool.canal.client.handler.EntryHandler;
-// 使用canal-spring-boot-starter进行注解配置使用
+//// 使用canal-spring-boot-starter进行注解配置使用
 //@Component
 //@CanalTable(value = "orders")  //Order为要监控的表名
 //public class OrderHandler implements EntryHandler<Order> {

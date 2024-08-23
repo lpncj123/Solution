@@ -17,7 +17,4 @@ import java.util.ArrayList;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestJunit {
-    public static void main(String[] args) {
-        new ArrayList<>();
-    }
 }
